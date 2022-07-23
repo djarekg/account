@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "Dg.Account.Budget"
+		},
+		{
+			"path": "Dg.Account.Budget.Tests"
+		}
+	],
+	"settings": {}
+}
