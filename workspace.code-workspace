@@ -1,11 +1,31 @@
 {
 	"folders": [
 		{
-			"path": "Dg.Account.Budget"
+			"path": "Account.Budget.Ng"
 		},
 		{
-			"path": "Dg.Account.Budget.Tests"
-		}
+			"path": "Account.Budget.React"
+		},
+		{
+			"path": "Account.Budget.Web"
+		},
 	],
-	"settings": {}
+	"settings": {
+		// "[javascript]": {
+		// 	"editor.formatOnSave": true
+		// }
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [],
+		"compounds": [
+			{
+				"name": "ng/.net",
+				"configurations": [
+					".NET Core Launch (web)",
+					"ng serve"
+				]
+			}
+		]
+	}
 }
