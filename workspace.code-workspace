@@ -3,12 +3,15 @@
 		{
 			"path": "Account.Budget.Ng"
 		},
-		{
-			"path": "Account.Budget.React"
-		},
+		// {
+		// 	"path": "Account.Budget.React"
+		// },
 		{
 			"path": "Account.Budget.Web"
 		},
+		{
+			"path": "Account.Budget.EntityFrameworkCore"
+		}
 	],
 	"settings": {
 		// "[javascript]": {

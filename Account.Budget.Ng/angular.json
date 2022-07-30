@@ -3,7 +3,10 @@
   "version": 1,
   "cli": {
     "packageManager": "pnpm",
-    "analytics": "e3c05339-c747-4f16-9e02-058d78cff7a0"
+    "analytics": "e3c05339-c747-4f16-9e02-058d78cff7a0",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -103,6 +106,15 @@
               "projects/account-budget/src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/account-budget/**/*.ts",
+              "projects/account-budget/**/*.html"
+            ]
           }
         }
       }
