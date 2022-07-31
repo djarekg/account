@@ -48,9 +48,13 @@ public static class DbContextExtensions
     public static IServiceCollection AddAccountDbContext(this IServiceCollection services, IConfiguration configuration)
     {
 #pragma warning disable CS8604
-        services.AddPooledDbContextFactory<AccountDbContext>(
-            o => o.UseSqlServer(configuration.GetConnectionString("Account"),
-            x => x.MigrationsAssembly("Account.Budget.EntityFrameworkCore")));
+        services
+            .AddPooledDbContextFactory<AccountDbContext>(
+                o => o
+                    .UseSqlServer(
+                        configuration.GetConnectionString("Account"),
+                        x => x.MigrationsAssembly("Account.Budget.EntityFrameworkCore"))
+                    .EnableSensitiveDataLogging());
 #pragma warning restore CS8604
 
         services.AddScoped<DbContextScopedFactory<AccountDbContext>>();

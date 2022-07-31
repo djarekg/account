@@ -1,17 +1,23 @@
 {
 	"folders": [
 		{
-			"path": "Account.Budget.Ng"
+			"path": "src/Account.Budget.Ng"
 		},
 		// {
-		// 	"path": "Account.Budget.React"
+		// 	"path": "src/Account.Budget.React"
 		// },
 		{
-			"path": "Account.Budget.Web"
+			"path": "src/Account.Budget.Web"
 		},
 		{
-			"path": "Account.Budget.EntityFrameworkCore"
-		}
+			"path": "src/Account.Budget.EntityFrameworkCore"
+		},
+		{
+			"path": "test/Account.Budget.Web.Tests"
+		},
+		{
+			"path": "test/Account.Budget.EntityFrameworkCore.Tests"
+		},
 	],
 	"settings": {
 		// "[javascript]": {
