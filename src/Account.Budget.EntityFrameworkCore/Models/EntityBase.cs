@@ -6,9 +6,9 @@ public abstract record EntityBase
 {
     [Key]
     [Required]
-    public long Id { get; init; }
+    public long? Id { get; init; }
 
-    public EntityBase(long id)
+    public EntityBase(long? id)
     {
         Id = id;
     }
