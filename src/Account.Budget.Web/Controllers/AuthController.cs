@@ -1,4 +1,4 @@
-using Account.Budget.Web.Models;
+using Account.Budget.EntityFrameworkCore.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Account.Budget.Web.Controllers;
@@ -7,6 +7,7 @@ namespace Account.Budget.Web.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
+
     private readonly ILogger<AuthController> _logger;
 
     public AuthController(ILogger<AuthController> logger)

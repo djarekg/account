@@ -8,8 +8,8 @@ public class UserSeeder : IEntitySeeder
     public void Seed(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasData(
-            new User(1, "djarekg", "Dustin", "Griffith", "dustingriffith@outlook.com"),
-            new User(2, "jdoe", "John", "Doe", "jdoe@idk.com")
+            new User(1, "djarekg", "test", "Dustin", "Griffith", "dustingriffith@outlook.com"),
+            new User(2, "jdoe", "test", "John", "Doe", "jdoe@idk.com")
         );
     }
 }
