@@ -9,25 +9,25 @@ namespace Account.Budget.EntityFrameworkCore.Models;
 public record User(long? Id = null) : EntityBase(Id)
 {
 #pragma warning disable IDE0052
-    [Required, MaxLength(20), Column(Order = 7)]
+    [Required, MaxLength(20), Column(Order = 8)]
     public string UserName { get; private init; } = string.Empty;
 
-    [Required, MaxLength(100), Column(Order = 6)]
+    [Required, MaxLength(100), Column(Order = 7)]
     public string Password { get; private init; } = string.Empty;
 
-    [Required, MaxLength(50), EmailAddress, Column(Order = 3)]
+    [Required, MaxLength(50), EmailAddress, Column(Order = 4)]
     public string Email { get; private init; } = string.Empty;
 
-    [Required, MaxLength(20), Column(Order = 4)]
+    [Required, MaxLength(20), Column(Order = 5)]
     public string FirstName { get; private init; } = string.Empty;
 
-    [Required, MaxLength(20), Column(Order = 5)]
+    [Required, MaxLength(20), Column(Order = 6)]
     public string LastName { get; private init; } = string.Empty;
 
-    [Required, Column(Order = 1)]
+    [Required, Column(Order = 2)]
     public DateTime DateCreated { get; private init; } = DateTime.Now;
 
-    [Column(Order = 2)]
+    [Column(Order = 3)]
     public DateTime? DateModified { get; private init; }
 
 #pragma warning restore IDE0052
