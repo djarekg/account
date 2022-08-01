@@ -51,10 +51,10 @@ public static class DbContextExtensions
         services
             .AddPooledDbContextFactory<AccountDbContext>(
                 o => o
+                    .EnableSensitiveDataLogging()
                     .UseSqlServer(
                         configuration.GetConnectionString("Account"),
-                        x => x.MigrationsAssembly("Account.Budget.EntityFrameworkCore"))
-                    .EnableSensitiveDataLogging());
+                        x => x.MigrationsAssembly("Account.Budget.EntityFrameworkCore")));
 #pragma warning restore CS8604
 
         services.AddScoped<DbContextScopedFactory<AccountDbContext>>();
