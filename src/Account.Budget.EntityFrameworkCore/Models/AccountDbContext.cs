@@ -1,8 +1,7 @@
 using Account.Budget.EntityFrameworkCore.DbContextFactory;
+using Account.Budget.EntityFrameworkCore.Extensions;
 using Account.Budget.EntityFrameworkCore.SeedData;
-using Account.Budget.Web.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Account.Budget.EntityFrameworkCore.Models;
 

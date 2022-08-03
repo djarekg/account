@@ -1,4 +1,4 @@
-using Account.Budget.Web.Extensions;
+using Account.Budget.EntityFrameworkCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

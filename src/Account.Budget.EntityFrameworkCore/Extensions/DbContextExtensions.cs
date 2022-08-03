@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Account.Budget.Web.Extensions;
+namespace Account.Budget.EntityFrameworkCore.Extensions;
 
 /// <summary>
 /// Extensions for configurating the DbContext.

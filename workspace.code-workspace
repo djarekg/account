@@ -1,11 +1,8 @@
 {
 	"folders": [
 		{
-			"path": "src/Account.Budget.Ng"
+			"path": "src/Account.Budget.React"
 		},
-		// {
-		// 	"path": "src/Account.Budget.React"
-		// },
 		{
 			"path": "src/Account.Budget.Web"
 		},
@@ -29,10 +26,10 @@
 		"configurations": [],
 		"compounds": [
 			{
-				"name": "ng/.net",
+				"name": "react/.net",
 				"configurations": [
 					".NET Core Launch (web)",
-					"ng serve"
+					"react"
 				]
 			}
 		]
