@@ -1,0 +1,22 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: latest
+  sourceType: module
+plugins:
+  - react
+rules:
+  jsx-quotes:
+    - 2
+    - single
+    - avoid-escape
+  keyword-spacing:
+    - 2
+    - before: true
+      after: true
