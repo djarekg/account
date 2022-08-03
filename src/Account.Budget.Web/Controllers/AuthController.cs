@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Account.Budget.EntityFrameworkCore.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +17,9 @@ public class AuthController : ControllerBase
         _logger = logger;
     }
 
+    [HttpGet(Name = "IsAuthenticated")]
+    public IActionResult Get() => Ok(new { IsAuthenticated = User.Identity.IsAuthenticated });
+
     [HttpPost(Name = "Login")]
     public async Task<IActionResult> Post(Login login)
     {
@@ -27,4 +32,10 @@ public class AuthController : ControllerBase
             return Unauthorized();
         }
     }
+
+    //     [HttpDelete(Name = "Logout")]
+    //     public async Task<IActionResult> Delete()
+    //     {
+    //         return User.Identity.lo
+    //     }
 }
