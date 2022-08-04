@@ -1,9 +1,0 @@
-# .prettierrc or .prettierrc.yaml
-bracketSpacing: false
-jsxSingleQuote: true
-parser: "babel"
-printWidth: 80
-singleQuote: true
-tabWidth: 2
-trailingComma: "es5"
-useTabs: false
