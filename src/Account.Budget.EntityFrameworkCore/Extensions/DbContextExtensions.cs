@@ -1,6 +1,7 @@
 using Account.Budget.EntityFrameworkCore.DbContextFactory;
 using Account.Budget.EntityFrameworkCore.Models;
 using Account.Budget.EntityFrameworkCore.SeedData;
+using Account.Budget.EntityFrameworkCore.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -58,6 +59,7 @@ public static class DbContextExtensions
 #pragma warning restore CS8604
 
         services.AddScoped<DbContextScopedFactory<AccountDbContext>>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }

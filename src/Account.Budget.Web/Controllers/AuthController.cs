@@ -1,36 +1,47 @@
-using System;
-using System.Threading.Tasks;
 using Account.Budget.EntityFrameworkCore.Models;
+using Account.Budget.Web.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Account.Budget.Web.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class AuthController : ControllerBase
 {
 
     private readonly ILogger<AuthController> _logger;
+    private readonly IIdentityService _identityService;
 
-    public AuthController(ILogger<AuthController> logger)
+    public AuthController(ILogger<AuthController> logger, IIdentityService identityService)
     {
         _logger = logger;
+        _identityService = identityService;
     }
 
+    [AllowAnonymous]
     [HttpGet(Name = "IsAuthenticated")]
-    public IActionResult Get() => Ok(new { IsAuthenticated = User.Identity.IsAuthenticated });
+    public IActionResult Get() => Ok(User?.Identity?.IsAuthenticated);
 
+    [AllowAnonymous]
     [HttpPost(Name = "Login")]
     public async Task<IActionResult> Post(Login login)
     {
-        if (login.UserName == "admin" && login.Password == "admin")
+        if (!TryValidateModel(login))
         {
-            return Ok(new { token = "12345" });
+            return BadRequest(ModelState);
         }
-        else
+
+        var token = await _identityService.ValidateCredentialsAndSignInAsync(login);
+
+        if (token is not null)
         {
-            return Unauthorized();
+            return Ok(token);
         }
+
+        return Unauthorized();
     }
 
     //     [HttpDelete(Name = "Logout")]
