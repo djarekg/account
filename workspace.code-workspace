@@ -1,11 +1,8 @@
 {
 	"folders": [
 		{
-			"path": "src/Account.Budget.Ng"
+			"path": "src/Account.Budget"
 		},
-		// {
-		// 	"path": "src/Account.Budget.React"
-		// },
 		{
 			"path": "src/Account.Budget.Web"
 		},
@@ -19,11 +16,6 @@
 			"path": "test/Account.Budget.EntityFrameworkCore.Tests"
 		},
 	],
-	"settings": {
-		// "[javascript]": {
-		// 	"editor.formatOnSave": true
-		// }
-	},
 	"launch": {
 		"version": "0.2.0",
 		"configurations": [],
@@ -36,5 +28,6 @@
 				]
 			}
 		]
-	}
+	},
+	"settings": {}
 }
