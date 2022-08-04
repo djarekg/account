@@ -1,12 +1,13 @@
 using Account.Budget.EntityFrameworkCore.DbContextFactory;
 using Account.Budget.EntityFrameworkCore.Models;
 using Account.Budget.EntityFrameworkCore.SeedData;
+using Account.Budget.EntityFrameworkCore.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Account.Budget.Web.Extensions;
+namespace Account.Budget.EntityFrameworkCore.Extensions;
 
 /// <summary>
 /// Extensions for configurating the DbContext.
@@ -51,13 +52,14 @@ public static class DbContextExtensions
         services
             .AddPooledDbContextFactory<AccountDbContext>(
                 o => o
+                    .EnableSensitiveDataLogging()
                     .UseSqlServer(
                         configuration.GetConnectionString("Account"),
-                        x => x.MigrationsAssembly("Account.Budget.EntityFrameworkCore"))
-                    .EnableSensitiveDataLogging());
+                        x => x.MigrationsAssembly("Account.Budget.EntityFrameworkCore")));
 #pragma warning restore CS8604
 
         services.AddScoped<DbContextScopedFactory<AccountDbContext>>();
+        services.AddScoped<IUserService, UserService>();
 
         return services;
     }

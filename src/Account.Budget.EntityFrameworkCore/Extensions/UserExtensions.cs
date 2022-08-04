@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace Account.Budget.EntityFrameworkCore.Extensions;
 
-internal static class UserExtensions
+public static class UserExtensions
 {
     public static string? HashPassword(this User user, string password)
     {
