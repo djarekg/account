@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "src/Account.Budget.React"
+			"path": "src/Account.Budget"
 		},
 		{
 			"path": "src/Account.Budget.Web"
@@ -28,5 +28,6 @@
 				]
 			}
 		]
-	}
+	},
+	"settings": {}
 }
