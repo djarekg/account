@@ -8,22 +8,18 @@ public static class UserExtensions
 {
     public static string? HashPassword(this User user, string password)
     {
-        if (!string.IsNullOrEmpty(password))
-        {
-            var hasher = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new()));
-            string? hashedPassword = hasher?.HashPassword(user, password);
+        ArgumentException.ThrowIfNullOrEmpty(password, nameof(password));
 
-            if (!string.IsNullOrEmpty(hashedPassword))
-            {
-                return hashedPassword;
-            }
-        }
+        var hasher = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new()));
+        var hashedPassword = hasher?.HashPassword(user, password);
 
-        throw new ArgumentNullException(nameof(password));
+        return string.IsNullOrEmpty(hashedPassword) ? null : hashedPassword;
     }
 
     public static bool VerifyPassword(this User user, string password)
     {
+        ArgumentException.ThrowIfNullOrEmpty(password, nameof(password));
+
         var hasher = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new()));
         return hasher?.VerifyHashedPassword(user, user.Password, password) == PasswordVerificationResult.Success;
     }

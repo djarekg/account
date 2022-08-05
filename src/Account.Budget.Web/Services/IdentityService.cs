@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -28,12 +29,7 @@ public sealed class IdentityService : IIdentityService
     {
         var user = await _userService.GetUserAsync(userName);
 
-        if (user is null)
-        {
-#pragma warning disable CA2208
-            throw new ArgumentNullException("user");
-#pragma warning restore CA2208
-        }
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
 
         JwtTokenConfiguration jwtTokenConfiguration = new(
             user.UserName,
@@ -61,12 +57,7 @@ public sealed class IdentityService : IIdentityService
 
         var context = _httpContextAccessor.HttpContext;
 
-        if (context is null)
-        {
-#pragma warning disable CA2208
-            throw new ArgumentNullException("HttpContext");
-#pragma warning restore CA2208
-        }
+        ArgumentNullException.ThrowIfNull(context, nameof(context));
 
         await context.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
@@ -100,12 +91,6 @@ public sealed class IdentityService : IIdentityService
     public async Task<bool> ValidateCredentialsAsync(Login login)
     {
         var user = await _userService.GetUserAsync(login.UserName);
-
-        if (user is null)
-        {
-            return false;
-        }
-
-        return user.VerifyPassword(login.Password);
+        return user is not null && user.VerifyPassword(login.Password);
     }
 }
