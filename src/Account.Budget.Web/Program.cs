@@ -1,28 +1,28 @@
 using Account.Budget.EntityFrameworkCore.Extensions;
+using Account.Budget.EntityFrameworkCore.Models;
+using Account.Budget.Web.Exceptions;
 using Account.Budget.Web.Services;
+using Account.Budget.Web.Validation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<HttpResponseExceptionFilter>();
+    options.Filters.Add<ValidateModelAttribute>();
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddJwtBearerAuthentication(builder.Configuration);
 
 builder.Services.AddMemoryCache();
 
-builder.Services
-    .AddAuthentication(
-        JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(
-        JwtBearerDefaults.AuthenticationScheme,
-        options => builder.Configuration.Bind("JwtSettings", options))
-    .AddCookie(
-        CookieAuthenticationDefaults.AuthenticationScheme,
-        options => builder.Configuration.Bind("CookieSettings", options));
-
-builder.Services.AddDbContextScopedFactory();
 builder.Services.AddAccountDbContext(builder.Configuration);
 
 builder.Services.AddScoped<IIdentityService, IdentityService>();
@@ -33,8 +33,14 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    // app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
+
 
 app.UseHttpsRedirection();
 

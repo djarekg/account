@@ -1,52 +1,77 @@
 using Account.Budget.EntityFrameworkCore.Models;
+using Account.Budget.Web.Exceptions;
+using Account.Budget.Web.Security;
 using Account.Budget.Web.Services;
-using Microsoft.AspNetCore.Authentication;
+using Account.Budget.Web.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Account.Budget.Web.Controllers;
 
+/// <summary>
+/// The authentication controller.
+/// </summary>
 [Authorize]
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
+[Produces("application/json")]
+[TypeFilter(typeof(HttpResponseExceptionFilter))]
 public class AuthController : ControllerBase
 {
-
-    private readonly ILogger<AuthController> _logger;
     private readonly IIdentityService _identityService;
 
-    public AuthController(ILogger<AuthController> logger, IIdentityService identityService)
+    public AuthController(IIdentityService identityService)
     {
-        _logger = logger;
         _identityService = identityService;
     }
 
+    /// <summary>
+    /// Is current user authenticated.
+    /// </summary>
+    /// <returns>True if current user is authenticated, otherwise false.</returns>
+    /// <response code="200">Returns true if current user is authenticated, otherwise false.</response>
     [AllowAnonymous]
-    [HttpGet(Name = "IsAuthenticated")]
-    public IActionResult Get() => Ok(User?.Identity?.IsAuthenticated);
+    [HttpGet(Name = "Authenticated")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+    public ActionResult<bool> Get() => Ok(User?.Identity?.IsAuthenticated);
 
+    /// <summary>
+    /// Signin user.
+    /// </summary>
+    /// <param name="login">The Login object.</param>
+    /// <returns>The JwtToken for authenticated user.</returns>
+    /// <response code="201">Returns JwtToken for authenticated user.</response>
+    /// <response code="400">If credentials is invalid.</response>
+    /// <response code="401">If credentials is unauthorized.</response>
     [AllowAnonymous]
-    [HttpPost(Name = "Login")]
-    public async Task<IActionResult> Post(Login login)
+    [HttpPut(Name = "Login")]
+    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(JwtToken))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<JwtToken>> Put([FromBody] string userName, [FromBody] string password)
     {
-        if (!TryValidateModel(login))
-        {
-            return BadRequest(ModelState);
-        }
+        ArgumentException.ThrowIfNullOrEmpty(userName, nameof(userName));
+        ArgumentException.ThrowIfNullOrEmpty(password, nameof(password));
 
-        var token = await _identityService.ValidateCredentialsAndSignInAsync(login);
+        var token = await _identityService.ValidateCredentialsAndSignInAsync(userName, password);
 
         if (token is not null)
         {
-            return Ok(token);
+            return CreatedAtAction(nameof(token), new { id = token.DisplayName }, token);
         }
 
         return Unauthorized();
     }
 
-    //     [HttpDelete(Name = "Logout")]
-    //     public async Task<IActionResult> Delete()
-    //     {
-    //         return User.Identity.lo
-    //     }
+    /// <summary>
+    /// Sign out user.
+    /// </summary>
+    /// <response code="200">If user was signed out.</response>
+    [HttpDelete(Name = "Logout")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Delete()
+    {
+        await _identityService.SignOutAsync();
+        return Ok();
+    }
 }
