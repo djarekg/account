@@ -34,6 +34,11 @@ public record User(long? Id = null) : EntityBase(Id)
     public DateTime? DateModified { get; private init; }
 #pragma warning restore IDE0052
 
+    public User(long? id, string userName) : this(id)
+    {
+        UserName = userName;
+    }
+
     public User(long? id, string userName, string password, string firstName, string lastName, string email) : this(id)
     {
         UserName = userName;

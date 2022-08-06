@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Account.Budget.EntityFrameworkCore.Services;
 
+/// <inheritdoc />
 public sealed class UserService : IUserService
 {
     private readonly AccountDbContext _dbContext;

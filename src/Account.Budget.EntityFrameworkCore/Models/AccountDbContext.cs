@@ -1,11 +1,10 @@
-using Account.Budget.EntityFrameworkCore.DbContextFactory;
 using Account.Budget.EntityFrameworkCore.Extensions;
 using Account.Budget.EntityFrameworkCore.SeedData;
 using Microsoft.EntityFrameworkCore;
 
 namespace Account.Budget.EntityFrameworkCore.Models;
 
-public class AccountDbContext : DbContextScopedBase
+public class AccountDbContext : DbContext
 {
     public DbSet<User> Users { get; set; } = default!;
 
