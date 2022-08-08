@@ -14,7 +14,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "css"
         }
       },
       "root": "projects/account-budget",
@@ -29,13 +29,14 @@
             "main": "projects/account-budget/src/main.ts",
             "polyfills": "projects/account-budget/src/polyfills.ts",
             "tsConfig": "projects/account-budget/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               "projects/account-budget/src/favicon.ico",
               "projects/account-budget/src/assets"
             ],
             "styles": [
-              "projects/account-budget/src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "projects/account-budget/src/styles.css"
             ],
             "scripts": []
           },
@@ -97,13 +98,14 @@
             "polyfills": "projects/account-budget/src/polyfills.ts",
             "tsConfig": "projects/account-budget/tsconfig.spec.json",
             "karmaConfig": "projects/account-budget/karma.conf.js",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "assets": [
               "projects/account-budget/src/favicon.ico",
               "projects/account-budget/src/assets"
             ],
             "styles": [
-              "projects/account-budget/src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "projects/account-budget/src/styles.css"
             ],
             "scripts": []
           }

@@ -21,10 +21,10 @@
 		"configurations": [],
 		"compounds": [
 			{
-				"name": "react/.net",
+				"name": "ng/.net",
 				"configurations": [
 					".NET Core Launch (web)",
-					"react"
+					"ng serve"
 				]
 			}
 		]
