@@ -1,4 +1,5 @@
 using Account.Budget.Web.Controllers;
+using Account.Budget.Web.Models;
 using Account.Budget.Web.Security;
 using Account.Budget.Web.Services;
 using Microsoft.AspNetCore.Http;
@@ -15,15 +16,16 @@ public class AuthControllerTest
         // Arrange
         const string USERNAME = "user";
         const string PASSWORD = "test";
+        var loginStub = new Login(USERNAME, PASSWORD);
 
         Mock<IIdentityService> identityServiceMock = new();
         identityServiceMock
             .Setup(us => us.ValidateCredentialsAndSignInAsync(USERNAME, PASSWORD))
-            .ReturnsAsync(new JwtToken(default, default, default));
+            .ReturnsAsync(new JwtToken(string.Empty, default, string.Empty));
         AuthController controller = new(identityServiceMock.Object);
 
         // Act
-        var actionResult = await controller.Put(USERNAME, PASSWORD);
+        var actionResult = await controller.Put(loginStub);
         var result = actionResult.Result as CreatedAtActionResult;
 
         // Assert
