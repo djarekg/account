@@ -1,5 +1,6 @@
 using Account.Budget.EntityFrameworkCore.Models;
 using Account.Budget.Web.Exceptions;
+using Account.Budget.Web.Models;
 using Account.Budget.Web.Security;
 using Account.Budget.Web.Services;
 using Account.Budget.Web.Validation;
@@ -45,15 +46,13 @@ public class AuthController : ControllerBase
     /// <response code="401">If credentials is unauthorized.</response>
     [AllowAnonymous]
     [HttpPut(Name = "Login")]
+    [ValidateModel]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(JwtToken))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<JwtToken>> Put([FromBody] string userName, [FromBody] string password)
+    public async Task<ActionResult<JwtToken>> Put(Login login)
     {
-        ArgumentException.ThrowIfNullOrEmpty(userName, nameof(userName));
-        ArgumentException.ThrowIfNullOrEmpty(password, nameof(password));
-
-        var token = await _identityService.ValidateCredentialsAndSignInAsync(userName, password);
+        var token = await _identityService.ValidateCredentialsAndSignInAsync(login.UserName, login.Password);
 
         if (token is not null)
         {

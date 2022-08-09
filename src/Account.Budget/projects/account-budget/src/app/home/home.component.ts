@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -15,5 +10,7 @@ import {
 export class HomeComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('HomeComponent.ngOnInit()');
+  }
 }

@@ -1,13 +1,11 @@
 import {LayoutModule} from '@account-budget/layout';
-import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-
-import {AccountRoutingModule} from './account-routing.module';
-import {AccountComponent} from './account.component';
-import {LoginComponent} from './login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {AccountComponent, AccountRoutingModule, LoginComponent} from '.';
 
 @NgModule({
-  declarations: [LoginComponent, AccountComponent],
-  imports: [CommonModule, AccountRoutingModule, LayoutModule],
+  declarations: [AccountComponent, LoginComponent],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AccountRoutingModule, LayoutModule],
 })
 export class AccountModule {}
