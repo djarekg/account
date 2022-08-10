@@ -7,7 +7,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {
     path: 'account',
-    loadChildren: () => import('./account/account.module').then(m => m.AccountModule), // Lazy load account module
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
   },
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
