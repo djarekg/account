@@ -1,0 +1,10 @@
+@import 'variables';
+@import 'layout';
+
+:host {
+  display: block;
+  height: $header-footer-height;
+  background-color: $header-footer-background-color;
+  padding: $header-footer-padding;
+  color: $header-footer-text-color;
+}

@@ -3,12 +3,21 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve",
-      "type": "pwa-msedge",
+      "name": "ng serve account-budget",
+      "type": "msedge",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/",
-      "port": 4200
+      "preLaunchTask": "npm: start:account-budget",
+      "url": "http://localhost:4200/account-budget",
+      "webRoot": "${workspaceRoot}",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:/*": "${webRoot}/*",
+        "/./*": "${webRoot}/*",
+        "/src/*": "${webRoot}/src/*",
+        "/*": "*",
+        "/./~/*": "${workspaceFolder}/node_modules/*"
+      },
+      "userDataDir": "${workspaceRoot}/out/edge",
     },
     {
       "name": "ng test",

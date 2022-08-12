@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:account-budget": "ng serve account-budget",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

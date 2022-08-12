@@ -23,8 +23,23 @@
       "dom"
     ],
     "paths": {
-      "@account-budget/*": [
-        "projects/account-budget/src/app/*"
+      "@account-budget/layout": [
+        "projects/account-budget/src/app/layout/index.ts",
+      ],
+      "@account-budget/models": [
+        "projects/account-budget/src/app/core/models/index.ts",
+      ],
+      "@account-budget/shared": [
+        "projects/account-budget/src/app/shared/index.ts",
+      ],
+      "@account-budget/services": [
+        "projects/account-budget/src/app/core/services/index.ts",
+      ],
+      "@account-budget/validators": [
+        "projects/account-budget/src/app/core/validators/index.ts",
+      ],
+      "@account-budget/core": [
+        "projects/account-budget/src/app/core/index.ts",
       ],
     }
   },

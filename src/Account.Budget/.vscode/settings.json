@@ -24,6 +24,7 @@
     "**/Thumbs.db": true,
     "**/node_modules": true,
     "**/.angular": true,
-    "**/dist": true
-  },
+    "**/dist": true,
+    "**/out": true,
+  }
 }

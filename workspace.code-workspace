@@ -21,10 +21,10 @@
 		"configurations": [],
 		"compounds": [
 			{
-				"name": "ng/.net",
+				"name": "ng account-budget/.net",
 				"configurations": [
 					".NET Core Launch (web)",
-					"ng serve"
+					"ng serve account-budget"
 				]
 			}
 		]

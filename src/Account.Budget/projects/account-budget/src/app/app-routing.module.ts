@@ -1,15 +1,15 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {AuthGuard} from './shared/guards';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {
-    path: 'account',
-    loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+    path: 'user-account',
+    loadChildren: () => import('./user-account/user-account.module').then(m => m.UserAccountModule),
   },
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

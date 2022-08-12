@@ -22,6 +22,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/account-budget/",
             "outputPath": "dist/account-budget",
             "index": "projects/account-budget/src/index.html",
             "main": "projects/account-budget/src/main.ts",
@@ -36,6 +37,9 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "projects/account-budget/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/account-budget/src/styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -69,7 +73,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
