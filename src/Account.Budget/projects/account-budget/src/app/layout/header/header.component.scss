@@ -1,22 +1,9 @@
-@use 'button';
-@import 'variables';
 @import 'layout';
 
 :host {
   @include app-layout;
 
-  display: flex;
-  align-items: center;
-  height: $header-footer-height;
-  background-color: $header-footer-background-color;
-  padding: $header-footer-padding;
-  color: $header-footer-text-color;
-
-  .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 2;
+  .page-title {
+    margin-left: 10px;
   }
 }

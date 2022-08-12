@@ -3,9 +3,9 @@
   routerLinkActive="activebutton"
   mat-flat-button
   ariaCurrentWhenActive="page">
-  <mat-icon>currency_exchange</mat-icon>
+  <mat-icon class="material-icons-outlined md-24">savings</mat-icon>
+  <span class="page-title md-24">{{ title$ | async }}</span>
 </a>
-<span>{{ title$ | async }}</span>
 <div class="container">
   <ng-content></ng-content>
 </div>
