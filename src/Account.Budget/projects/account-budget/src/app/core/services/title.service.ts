@@ -17,7 +17,8 @@ export class TitleService {
       const activatedRoute = this.getChild(this.route);
 
       activatedRoute.data.subscribe(data => {
-        this.title.next(data['title'] ?? DEFAULT_TITLE);
+        const { title } = data;
+        this.title.next(`${DEFAULT_TITLE} ${title ? ` - ${title}` : ''}`);
       });
     });
   }
