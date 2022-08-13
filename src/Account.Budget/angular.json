@@ -22,17 +22,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/account-budget/",
             "outputPath": "dist/account-budget",
             "index": "projects/account-budget/src/index.html",
             "main": "projects/account-budget/src/main.ts",
             "polyfills": "projects/account-budget/src/polyfills.ts",
             "tsConfig": "projects/account-budget/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/account-budget/src/favicon.ico",
-              "projects/account-budget/src/assets"
-            ],
+            "assets": ["projects/account-budget/src/favicon.ico", "projects/account-budget/src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "projects/account-budget/src/styles.scss"
@@ -101,10 +97,7 @@
             "tsConfig": "projects/account-budget/tsconfig.spec.json",
             "karmaConfig": "projects/account-budget/karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/account-budget/src/favicon.ico",
-              "projects/account-budget/src/assets"
-            ],
+            "assets": ["projects/account-budget/src/favicon.ico", "projects/account-budget/src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.scss",
               "projects/account-budget/src/styles.scss"
@@ -115,10 +108,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/account-budget/**/*.ts",
-              "projects/account-budget/**/*.html"
-            ]
+            "lintFilePatterns": ["projects/account-budget/**/*.ts", "projects/account-budget/**/*.html"]
           }
         }
       }

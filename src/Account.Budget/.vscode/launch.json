@@ -3,11 +3,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve account-budget",
+      "name": "ng serve",
       "type": "msedge",
       "request": "launch",
-      "preLaunchTask": "npm: start:account-budget",
-      "url": "http://localhost:4200/account-budget",
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200",
       "webRoot": "${workspaceRoot}",
       "sourceMaps": true,
       "sourceMapPathOverrides": {

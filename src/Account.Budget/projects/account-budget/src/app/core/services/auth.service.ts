@@ -16,7 +16,7 @@ export class AuthService {
 
   public login(userName: string, password: string): Observable<boolean | null> {
     return this.http
-      .post<JwtToken>('/api/login', {
+      .put<JwtToken>('auth', {
         userName: userName,
         password: password,
       })

@@ -1,18 +1,17 @@
-import { LoggerService } from '@account-budget/services';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
-function logError(error: any): void {
-  inject(LoggerService).error(error);
-}
+import { LoggerService } from '@account-budget/services';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
+  constructor(private readonly logger: LoggerService) {}
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError(error => {
-        logError(error);
+      catchError((err: HttpErrorResponse) => {
+        this.logger.error(err);
 
         // switch (error?.status) {
         //   case 400:
@@ -32,7 +31,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         //     break;
         // }
 
-        return throwError(() => error);
+        return throwError(() => err);
       }),
     );
   }

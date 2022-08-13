@@ -29,18 +29,18 @@
     </a>
     <mat-checkbox color="primary">Remember Me!</mat-checkbox>
   </div>
+  <div class="app-actions-container">
+    <button
+      mat-flat-button
+      type="submit"
+      color="primary"
+      [disabled]="!form.valid">
+      Sign In
+    </button>
+  </div>
 </form>
-<div class="app-actions-container">
-  <button
-    mat-flat-button
-    type="submit"
-    color="primary"
-    [disabled]="!form.valid">
-    Sign In
-  </button>
-</div>
 <div class="app-alternate-signin-container">
-  <span>or sign up using...</span>
+  <span>or sign up using</span>
   <div class="app-alternate-signin-actions-container">
     <a
       mat-icon-button

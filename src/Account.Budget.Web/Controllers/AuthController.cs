@@ -45,7 +45,7 @@ public class AuthController : ControllerBase
     /// <response code="400">If credentials is invalid.</response>
     /// <response code="401">If credentials is unauthorized.</response>
     [AllowAnonymous]
-    [HttpPut(Name = "Login")]
+    [HttpPut]
     [ValidateModel]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(JwtToken))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

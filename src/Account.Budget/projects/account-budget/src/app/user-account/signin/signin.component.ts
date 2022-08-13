@@ -1,5 +1,14 @@
+import { AuthService, ToastService } from '@account-budget/services';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, map } from 'rxjs';
+
+interface SignInForm {
+  userName: FormControl<string>;
+  password: FormControl<string>;
+  rememberMe: FormControl<boolean | null>;
+}
 
 @Component({
   selector: 'app-signin',
@@ -8,14 +17,49 @@ import { FormBuilder, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SigninComponent {
-  form = this.fb.nonNullable.group({
-    userName: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+  form = new FormGroup<SignInForm>({
+    userName: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
+    }),
+    password: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        // Validators.minLength(8),
+        // Validators.maxLength(20),
+        // Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]$/),
+      ],
+    }),
+    rememberMe: new FormControl(false, { validators: [Validators.required] }),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService,
+  ) {}
 
   onSubmit() {
-    console.log(this.form.value);
+    const { userName, password, rememberMe } = this.form.value;
+
+    this.authService
+      .login(userName!, password!)
+      .pipe(
+        map(valid => {
+          if (valid) {
+            const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+            this.router.navigateByUrl(returnUrl ?? '/');
+          }
+        }),
+        catchError(error => {
+          this.toastService.show('Invalid username or password.');
+          return error;
+        }),
+      )
+      .subscribe(valid => {
+        console.log(valid);
+      });
   }
 }
