@@ -9,12 +9,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    const bypassSecurityTrustResourceUrl = this.domSanitizer.bypassSecurityTrustResourceUrl;
+
     this.matIconRegistry.addSvgIcon(
       'github',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/github-circle-white-transparent.svg',
-      ),
+      bypassSecurityTrustResourceUrl('../assets/github-circle-white-transparent.svg'),
     );
+    this.matIconRegistry.addSvgIcon('google', bypassSecurityTrustResourceUrl('../assets/google-brands.svg'));
+    this.matIconRegistry.addSvgIcon('twitter', bypassSecurityTrustResourceUrl('../assets/twitter-brands.svg'));
+    this.matIconRegistry.addSvgIcon('facebook', bypassSecurityTrustResourceUrl('../assets/facebook-f-brands.svg'));
   }
-  title = 'account-budget';
 }

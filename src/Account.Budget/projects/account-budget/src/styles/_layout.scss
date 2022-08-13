@@ -1,9 +1,8 @@
-@use 'button';
 @import 'variables';
 
 $header-footer-height: 64px;
 $header-footer-padding: 0 16px;
-$header-footer-background-color: $primary-color;
+$header-footer-background-color: $accent-dark-color;
 $header-footer-text-color: $light-primary-text;
 
 @mixin app-layout {
@@ -31,16 +30,7 @@ $header-footer-text-color: $light-primary-text;
     background-color: transparent;
 
     &:hover {
-      background-color: $primary-dark-color;
-    }
-  }
-
-  .app-link {
-    font-size: 0.9em;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
+      background-color: $accent-dark-color;
     }
   }
 }

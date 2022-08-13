@@ -34,7 +34,7 @@
               "projects/account-budget/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "projects/account-budget/src/styles.scss"
             ],
             "stylePreprocessorOptions": {
@@ -106,7 +106,7 @@
               "projects/account-budget/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.scss",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.scss",
               "projects/account-budget/src/styles.scss"
             ],
             "scripts": []

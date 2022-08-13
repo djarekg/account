@@ -13,12 +13,15 @@
 }
 
 .mat-card {
-  padding: 18px 36px;
+  padding: 18px 46px;
 
   .mat-card-header {
     justify-content: center;
-    font-size: 1.7em;
-    padding: 10px 0;
+    padding: 20px 0;
+
+    .mat-card-title {
+      // font-size: 1.7em;
+    }
   }
 
   &.mat-card-content {

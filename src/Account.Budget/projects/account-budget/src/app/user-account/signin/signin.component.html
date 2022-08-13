@@ -2,26 +2,35 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <mat-icon matPrefix>person</mat-icon>
     <input
       matInput
       autocomplete="off"
       formControlName="userName"
       placeholder="User Name *" />
+    <mat-icon matSuffix>person</mat-icon>
     <mat-error>User name is required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-icon matPrefix>lock</mat-icon>
     <input
       matInput
       formControlName="password"
       placeholder="Password *"
       type="password" />
+    <mat-icon matSuffix>lock</mat-icon>
     <mat-error>Password is required</mat-error>
   </mat-form-field>
-  <mat-checkbox color="primary">Remember Me!</mat-checkbox>
+  <div class="app-options-container">
+    <a
+      class="app-link"
+      routerLink="/user-account/forgot-password"
+      routerLinkActive="activebutton"
+      ariaCurrentWhenActive="page">
+      Forgot Password?
+    </a>
+    <mat-checkbox color="primary">Remember Me!</mat-checkbox>
+  </div>
 </form>
-<div class="actions-container">
+<div class="app-actions-container">
   <button
     mat-flat-button
     type="submit"
@@ -29,4 +38,27 @@
     [disabled]="!form.valid">
     Sign In
   </button>
+</div>
+<div class="app-alternate-signin-container">
+  <span>or sign up using...</span>
+  <div class="app-alternate-signin-actions-container">
+    <a
+      mat-icon-button
+      target="_blank"
+      ariaCurrentWhenActive="page">
+      <mat-icon svgIcon="google"></mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      target="_blank"
+      ariaCurrentWhenActive="page">
+      <mat-icon svgIcon="twitter"></mat-icon>
+    </a>
+    <a
+      mat-icon-button
+      target="_blank"
+      ariaCurrentWhenActive="page">
+      <mat-icon svgIcon="facebook"></mat-icon>
+    </a>
+  </div>
 </div>
