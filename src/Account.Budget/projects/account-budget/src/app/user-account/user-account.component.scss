@@ -1,7 +1,28 @@
+@import 'variables';
+
 :host {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+::ng-deep .mat-tab-group .mat-tab-label {
+  min-width: 180px;
+}
+
+.mat-card {
+  padding: 18px 36px;
+
+  .mat-card-header {
+    justify-content: center;
+    font-size: 1.7em;
+    padding: 10px 0;
+  }
+
+  &.mat-card-content {
+    display: flex;
+    flex-direction: column;
+  }
 }

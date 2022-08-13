@@ -5,9 +5,12 @@ import { TitleStrategy } from '@angular/router';
 
 import { httpInterceptorProviders } from './interceptors';
 import { TemplatePageTitleStrategy } from './strategies';
+import { PasswordMatchDirective } from './directives/password-match.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PasswordMatchDirective
+  ],
   imports: [CommonModule, FormsModule],
   exports: [CommonModule, FormsModule],
   providers: [

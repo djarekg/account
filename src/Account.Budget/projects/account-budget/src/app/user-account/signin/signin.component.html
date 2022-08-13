@@ -1,0 +1,32 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-icon matPrefix>person</mat-icon>
+    <input
+      matInput
+      autocomplete="off"
+      formControlName="userName"
+      placeholder="User Name *" />
+    <mat-error>User name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-icon matPrefix>lock</mat-icon>
+    <input
+      matInput
+      formControlName="password"
+      placeholder="Password *"
+      type="password" />
+    <mat-error>Password is required</mat-error>
+  </mat-form-field>
+  <mat-checkbox color="primary">Remember Me!</mat-checkbox>
+</form>
+<div class="actions-container">
+  <button
+    mat-flat-button
+    type="submit"
+    color="primary"
+    [disabled]="!form.valid">
+    Sign In
+  </button>
+</div>
