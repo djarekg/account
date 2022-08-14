@@ -81,6 +81,10 @@
               "browserTarget": "account-budget:build:development"
             }
           },
+          "options": {
+            "browserTarget": "account-budget:build:development",
+            "proxyConfig": "projects/account-budget/src/proxy.conf.json"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

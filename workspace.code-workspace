@@ -1,40 +1,34 @@
 {
-	"folders": [
-		{
-			"path": "src/Account.Budget"
-		},
-		{
-			"path": "src/Account.Budget.Web"
-		},
-		{
-			"path": "src/Account.Budget.EntityFrameworkCore"
-		},
-		{
-			"path": "test/Account.Budget.Web.Tests"
-		},
-		{
-			"path": "test/Account.Budget.EntityFrameworkCore.Tests"
-		},
-	],
-	"launch": {
-		"version": "0.2.0",
-		"configurations": [],
-		"compounds": [
-			{
-				"name": "ng/.net",
-				"configurations": [
-					".NET Core Launch (web)",
-					"ng serve"
-				]
-			},
-			{
-				"name": ".net/swagger",
-				"configurations": [
-					".NET Core Launch (web)",
-					"swagger"
-				]
-			}
-		]
-	},
-	"settings": {}
+  "folders": [
+    {
+      "path": "src/Account.Budget"
+    },
+    {
+      "path": "src/Account.Budget.Web"
+    },
+    {
+      "path": "src/Account.Budget.EntityFrameworkCore"
+    },
+    {
+      "path": "test/Account.Budget.Web.Tests"
+    },
+    {
+      "path": "test/Account.Budget.EntityFrameworkCore.Tests"
+    }
+  ],
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [],
+    "compounds": [
+      {
+        "name": ".net (web)/ng serve",
+        "configurations": [".net (web)", "ng serve"]
+      },
+      {
+        "name": ".net (web)/swagger",
+        "configurations": [".net (web)", "swagger"]
+      }
+    ]
+  },
+  "settings": {}
 }

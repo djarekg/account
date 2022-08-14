@@ -2,7 +2,7 @@ import { AuthService, ToastService } from '@account-budget/services';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, map } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 
 interface SignInForm {
   userName: FormControl<string>;
@@ -47,7 +47,7 @@ export class SigninComponent {
     this.authService
       .login(userName!, password!)
       .pipe(
-        map(valid => {
+        tap(valid => {
           if (valid) {
             const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
             this.router.navigateByUrl(returnUrl ?? '/');

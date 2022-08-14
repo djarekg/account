@@ -5,9 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HttpBaseUrlInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    request = request.clone({
-      url: `api/${request.url}`,
-    });
+    // if (/^api\//.test(request.url)) {
+    //   request = request.clone({
+    //     url: `http://localhost:5000/${request.url}`,
+    //   });
+    // }
 
     return next.handle(request);
   }

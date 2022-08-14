@@ -8,7 +8,7 @@ const TOKEN_KEY = 'auth-token';
 })
 export class TokenService {
   public getToken(): JwtToken | null {
-    const token = localStorage.getItem(TOKEN_KEY);
+    const token = sessionStorage.getItem(TOKEN_KEY);
 
     if (token) {
       return JSON.parse(token);
@@ -19,6 +19,9 @@ export class TokenService {
 
   public setToken(token: JwtToken): void {
     localStorage.removeItem(TOKEN_KEY);
-    token ?? localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+
+    if (token) {
+      sessionStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+    }
   }
 }

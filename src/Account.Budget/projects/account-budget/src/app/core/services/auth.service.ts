@@ -16,7 +16,7 @@ export class AuthService {
 
   public login(userName: string, password: string): Observable<boolean | null> {
     return this.http
-      .put<JwtToken>('auth', {
+      .put<JwtToken>('api/auth', {
         userName: userName,
         password: password,
       })
@@ -25,6 +25,7 @@ export class AuthService {
           if (token) {
             return of(this.tokenService.setToken(token));
           }
+
           return throwError(() => new Error('Invalid credentials'));
         }),
         switchMap(() => of(true)),

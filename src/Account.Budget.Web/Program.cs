@@ -4,9 +4,23 @@ using Account.Budget.Web.Services;
 using Account.Budget.Web.Validation;
 // using Microsoft.OpenApi.Models;
 
+var allowSpecificOrigins = "allowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        allowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddControllers(options =>
 {
@@ -15,17 +29,11 @@ builder.Services.AddControllers(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// builder.Services.AddSwaggerGen(options =>
-// {
-//     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Account.Budget.Web", Version = "v1" });
-// });
-
 builder.Services.AddHttpContextAccessor();
-
-builder.Services.AddJwtBearerAuthentication(builder.Configuration);
 
 builder.Services.AddMemoryCache();
 
+builder.Services.AddJwtBearerAuthentication(builder.Configuration);
 builder.Services.AddAccountDbContext(builder.Configuration);
 
 builder.Services.AddScoped<IIdentityService, IdentityService>();
@@ -35,6 +43,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors(allowSpecificOrigins);
     app.UseSwagger();
     // app.UseSwaggerUI();
     app.UseSwaggerUI(options =>
