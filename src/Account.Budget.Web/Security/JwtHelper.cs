@@ -5,15 +5,18 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Account.Budget.Web.Security;
 
+/// <summary>
+/// Helper class for JWT tokens.
+/// </summary>
 public static class JwtHelper
 {
+    /// <summary>
+    /// Create a JWT security token.
+    /// </summary>
+    /// <param name="config">The <see cref="JwtTokenConfiguration"/> object.</param>
+    /// <returns>The <see cref="JwtSecurityToken"/> object.</returns>
     public static JwtSecurityToken GetJwtToken(JwtTokenConfiguration config)
     {
-        if (!config.IsValid)
-        {
-            throw new ArgumentException("Invalid JWT token configuration");
-        }
-
         List<Claim> claims = new()
         {
             new(JwtRegisteredClaimNames.Sub, config.UserName),
@@ -26,8 +29,8 @@ public static class JwtHelper
             claims.AddRange(config.AdditionalClaims);
         }
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.SigningKey));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(config.SigningKey));
+        SigningCredentials creds = new(key, SecurityAlgorithms.HmacSha256);
 
         return new JwtSecurityToken(
             issuer: config.Issuer,

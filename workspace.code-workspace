@@ -21,10 +21,17 @@
 		"configurations": [],
 		"compounds": [
 			{
-				"name": "ng account-budget/.net",
+				"name": "ng/.net",
 				"configurations": [
 					".NET Core Launch (web)",
-					"ng serve account-budget"
+					"ng serve"
+				]
+			},
+			{
+				"name": ".net/swagger",
+				"configurations": [
+					".NET Core Launch (web)",
+					"swagger"
 				]
 			}
 		]

@@ -1,4 +1,3 @@
-using Account.Budget.EntityFrameworkCore.Models;
 using Account.Budget.Web.Exceptions;
 using Account.Budget.Web.Models;
 using Account.Budget.Web.Security;
@@ -37,17 +36,17 @@ public class AuthController : ControllerBase
     public ActionResult<bool> Get() => Ok(User?.Identity?.IsAuthenticated);
 
     /// <summary>
-    /// Signin user.
+    /// Sign in user.
     /// </summary>
-    /// <param name="login">The Login object.</param>
-    /// <returns>The JwtToken for authenticated user.</returns>
-    /// <response code="201">Returns JwtToken for authenticated user.</response>
-    /// <response code="400">If credentials is invalid.</response>
-    /// <response code="401">If credentials is unauthorized.</response>
+    /// <param name="login">The <see cref="Login"/> object.</param>
+    /// <returns>The <see cref="JwtToken"/> for authenticated user.</returns>
+    /// <response code="200">Returns <see cref="JwtToken"/> for authenticated user.</response>
+    /// <response code="400">If credentials are invalid.</response>
+    /// <response code="401">If credentials are unauthorized.</response>
     [AllowAnonymous]
-    [HttpPut]
+    [HttpPut(Name = "Login")]
     [ValidateModel]
-    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(JwtToken))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(JwtToken))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<JwtToken>> Put(Login login)
@@ -56,7 +55,7 @@ public class AuthController : ControllerBase
 
         if (token is not null)
         {
-            return CreatedAtAction(nameof(token), new { id = token.DisplayName }, token);
+            return Ok(token);
         }
 
         return Unauthorized();

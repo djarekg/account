@@ -15,7 +15,14 @@
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
-            },
+            }
         },
+        {
+            "name": "swagger",
+            "request": "launch",
+            "type": "msedge",
+            "url": "http://localhost:5000/swagger",
+            "webRoot": "${workspaceFolder}"
+        }
     ]
 }

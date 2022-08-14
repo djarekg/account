@@ -44,7 +44,6 @@ public sealed class IdentityService : IIdentityService
                 ExpiresUtc = DateTime.UtcNow.AddDays(1)
             });
 
-        // return the token to API client
         return new(
             new JwtSecurityTokenHandler().WriteToken(token),
             token.ValidTo,
@@ -79,16 +78,18 @@ public sealed class IdentityService : IIdentityService
     /// <summary>
     /// Get the JWT token for the specified <paramref name="user"/>.
     /// </summary>
-    /// <param name="user">User object.</param>
-    /// <returns>JWT security token.</returns>
+    /// <param name="user">The <see cref="User"/> object.</param>
+    /// <returns>The <see cref="JwtSecurityToken"/> object.</returns>
     private JwtSecurityToken GetJwtToken(User user)
     {
+        var jwtTokenSettings = _configuration.GetSection("JwtToken").Get<JwtTokenSettings>();
+
         JwtTokenConfiguration config = new(
             user.UserName,
-            _configuration.GetSection("JwtToken:SigningKey").Value ?? string.Empty,
-            _configuration.GetSection("JwtToken.Issuer").Value ?? string.Empty,
-            _configuration.GetSection("JwtToken.Audience").Value ?? string.Empty,
-            TimeSpan.FromMinutes(_configuration.GetSection("JwtToken.TokenTimeoutMinutes").Get<int>()),
+            jwtTokenSettings?.SecretKey,
+            jwtTokenSettings?.Issuer,
+            jwtTokenSettings?.Audience,
+            jwtTokenSettings?.TokenExpiry,
             new[] { new Claim("UserState", user.ToString()) }
         );
 
@@ -99,7 +100,7 @@ public sealed class IdentityService : IIdentityService
     /// Get the claims principal for the specified <paramref name="userName"/>.
     /// </summary>
     /// <param name="userName">UserName to get claims principal for.</param>
-    /// <returns>New ClaimsPrincipal for user.</returns>
+    /// <returns>New <see cref="ClaimsPrincipal"/> for user.</returns>
     private static ClaimsPrincipal GetPrincipal(string userName)
     {
         ClaimsIdentity identity = new(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);

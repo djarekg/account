@@ -1,15 +1,13 @@
 using Account.Budget.EntityFrameworkCore.Extensions;
-using Account.Budget.EntityFrameworkCore.Models;
 using Account.Budget.Web.Exceptions;
 using Account.Budget.Web.Services;
 using Account.Budget.Web.Validation;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
+// using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<HttpResponseExceptionFilter>();
@@ -17,6 +15,11 @@ builder.Services.AddControllers(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// builder.Services.AddSwaggerGen(options =>
+// {
+//     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Account.Budget.Web", Version = "v1" });
+// });
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddJwtBearerAuthentication(builder.Configuration);
@@ -36,11 +39,10 @@ if (app.Environment.IsDevelopment())
     // app.UseSwaggerUI();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
+        options.SwaggerEndpoint("v1/swagger.json", "v1");
+        // options.RoutePrefix = string.Empty;
     });
 }
-
 
 app.UseHttpsRedirection();
 

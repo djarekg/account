@@ -13,7 +13,7 @@ public interface IIdentityService
     /// Sign in the user with the specified <paramref name="userName"/>.
     /// </summary>
     /// <param name="userName">UserName to signin.</param>
-    /// <returns>The JWT token to API client.</returns>
+    /// <returns>The <see cref="JwtToken"/> object.</returns>
     Task<JwtToken> SignInAsync(string userName);
     /// <summary>
     /// Sign out the user.
@@ -22,13 +22,15 @@ public interface IIdentityService
     /// <summary>
     /// Validate and signin the user with the specified <paramref name="login"/>.
     /// </summary>
-    /// <param name="login">User credentials.</param>
-    /// <returns>The JWT token to API client.</returns>
+    /// <param name="userName">UserName for signin.</param>
+    /// <param name="password">Passowrd for signin.</param>
+    /// <returns>The <see cref="JwtToken"/> object.</returns>
     Task<JwtToken> ValidateCredentialsAndSignInAsync(string userName, string password);
     /// <summary>
     /// Validate the user with the specified <paramref name="login"/>.
     /// </summary>
-    /// <param name="login">User credentials.</param>
+    /// <param name="userName">UserName for signin.</param>
+    /// <param name="password">Passowrd for signin.</param>
     /// <returns>True if the credentials are valid, otherwise false.</returns>
     Task<bool> ValidateCredentialsAsync(string userName, string password);
 }
