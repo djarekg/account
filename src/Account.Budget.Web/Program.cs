@@ -1,62 +1,76 @@
 using Account.Budget.EntityFrameworkCore.Extensions;
+using Account.Budget.Identity.Extensions;
+using Account.Budget.Identity.Tokens.Jwt;
 using Account.Budget.Web.Exceptions;
-using Account.Budget.Web.Services;
 using Account.Budget.Web.Validation;
-// using Microsoft.OpenApi.Models;
 
 var allowSpecificOrigins = "allowSpecificOrigins";
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-builder.Services.AddCors(options =>
+// configure settings
 {
-    options.AddPolicy(
-        allowSpecificOrigins,
-        policy =>
+    var configuration = builder.Configuration;
+
+    configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+}
+
+// add services to DI container.
+{
+    var services = builder.Services;
+
+    if (builder.Environment.IsDevelopment())
+    {
+        services.AddCors(options =>
         {
-            policy.WithOrigins("http://localhost:4200")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+            options.AddPolicy(
+                allowSpecificOrigins,
+                policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
         });
-});
+    }
 
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add<HttpResponseExceptionFilter>();
-    options.Filters.Add<ValidateModelAttribute>();
-});
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddHttpContextAccessor();
+    services.Configure<JwtTokenSettings>(builder.Configuration.GetSection("JwtToken"));
 
-builder.Services.AddMemoryCache();
-
-builder.Services.AddJwtBearerAuthentication(builder.Configuration);
-builder.Services.AddAccountDbContext(builder.Configuration);
-
-builder.Services.AddScoped<IIdentityService, IdentityService>();
+    services.AddControllers(options =>
+    {
+        options.Filters.Add<HttpResponseExceptionFilter>();
+        options.Filters.Add<ValidateModelAttribute>();
+    });
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen();
+    services.AddHttpContextAccessor();
+    services.AddMemoryCache();
+    services.AddJwtBearerAuthentication(builder.Configuration);
+    services.AddAccountDbContext(builder.Configuration);
+}
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// configure middleware.
 {
-    app.UseCors(allowSpecificOrigins);
-    app.UseSwagger();
-    // app.UseSwaggerUI();
-    app.UseSwaggerUI(options =>
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
     {
-        options.SwaggerEndpoint("v1/swagger.json", "v1");
-        // options.RoutePrefix = string.Empty;
-    });
+        app.UseCors(allowSpecificOrigins);
+        app.UseSwagger();
+        // app.UseSwaggerUI();
+        app.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("v1/swagger.json", "v1");
+        });
+    }
+
+    app.UseHttpsRedirection();
+
+    app.UseAuthorization();
+    app.UseAuthentication();
+
+    app.MapControllers();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-app.UseAuthentication();
-app.MapControllers();
 
 app.Run();

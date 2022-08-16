@@ -1,7 +1,7 @@
+using Account.Budget.Identity.Services;
+using Account.Budget.Identity.Tokens.Jwt;
 using Account.Budget.Web.Exceptions;
 using Account.Budget.Web.Models;
-using Account.Budget.Web.Security;
-using Account.Budget.Web.Services;
 using Account.Budget.Web.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +51,7 @@ public class AuthController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<JwtToken>> Put(Login login)
     {
-        var token = await _identityService.ValidateCredentialsAndSignInAsync(login.UserName, login.Password);
+        var token = await _identityService.SignInAsync(login.UserName, login.Password);
 
         if (token is not null)
         {

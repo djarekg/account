@@ -1,6 +1,9 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
-namespace Account.Budget.Web.Security;
+namespace Account.Budget.Identity.Tokens.Jwt;
 
 /// <summary>
 /// Jwt token configuration record.
@@ -32,5 +35,35 @@ public record JwtTokenConfiguration
         Audience = audience!;
         Expiration = TimeSpan.FromMinutes(int.Parse(tokenExpiry!.Value.ToString()));
         AdditionalClaims = additionalClaims;
+    }
+
+    /// <summary>
+    /// Create a JWT security token.
+    /// </summary>
+    /// <returns>The <see cref="JwtSecurityToken"/> object.</returns>
+    public JwtSecurityToken GenerateToken()
+    {
+        List<Claim> claims = new()
+        {
+            new(JwtRegisteredClaimNames.Sub, UserName),
+            // this guarantees the token is unique
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
+        if (AdditionalClaims?.Length > 0)
+        {
+            claims.AddRange(AdditionalClaims);
+        }
+
+        SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(SigningKey));
+        SigningCredentials creds = new(key, SecurityAlgorithms.HmacSha256);
+
+        return new JwtSecurityToken(
+            issuer: Issuer,
+            audience: Audience,
+            expires: DateTime.UtcNow.Add(Expiration),
+            claims: claims,
+            signingCredentials: creds
+        );
     }
 }

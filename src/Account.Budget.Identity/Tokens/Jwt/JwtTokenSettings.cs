@@ -1,4 +1,4 @@
-namespace Account.Budget.Web.Security;
+namespace Account.Budget.Identity.Tokens.Jwt;
 
 /// <summary>
 /// Jwt token settings record.

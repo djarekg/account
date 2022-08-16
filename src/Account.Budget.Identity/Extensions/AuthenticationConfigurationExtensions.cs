@@ -1,7 +1,10 @@
+using Account.Budget.Identity.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Account.Budget.Web.Exceptions;
+namespace Account.Budget.Identity.Extensions;
 
 public static class AuthenticationConfigurationExtensions
 {
@@ -16,6 +19,9 @@ public static class AuthenticationConfigurationExtensions
             .AddCookie(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 options => configuration.Bind("CookieSettings", options));
+
+        // add app specific services to DI container.
+        services.AddScoped<IIdentityService, IdentityService>();
 
         return services;
     }
