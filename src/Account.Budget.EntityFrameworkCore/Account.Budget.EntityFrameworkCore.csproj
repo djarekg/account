@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Account.Budget.EntityFrameworkCore</RootNamespace>
+    <DefineConstants>$(ASPNETCORE_ENVIRONMENT)</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
