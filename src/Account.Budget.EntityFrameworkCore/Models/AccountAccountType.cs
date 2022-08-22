@@ -8,10 +8,8 @@ namespace Account.Budget.EntityFrameworkCore.Models;
 /// <summary>
 /// Account account type entity type.
 /// </summary>
-/// <value></value>
-[Keyless]
 [Index(nameof(AccountId), nameof(AccountTypeId), IsUnique = true)]
-public record AccountAccountType
+public record AccountAccountType() : EntityBase()
 {
     #region entity fields
     [Required, ForeignKey(nameof(AccountId))]
@@ -26,7 +24,7 @@ public record AccountAccountType
     public AccountType? AccountType { get; private init; }
     #endregion
 
-    public AccountAccountType(long accountId, AccountTypes accountTypeId)
+    public AccountAccountType(long accountId, AccountTypes accountTypeId) : this()
     {
         AccountId = accountId;
         AccountTypeId = accountTypeId;

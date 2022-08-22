@@ -7,9 +7,8 @@ namespace Account.Budget.EntityFrameworkCore.Models;
 /// <summary>
 ///  User account entity type.
 /// </summary>
-[Keyless]
 [Index(nameof(UserId), nameof(AccountId), IsUnique = true)]
-public record UserAccount
+public record UserAccount() : EntityBase()
 {
     #region entity fields
     [Required, ForeignKey(nameof(UserId))]
@@ -24,7 +23,7 @@ public record UserAccount
     public Account? Account { get; private init; }
     #endregion
 
-    public UserAccount(long userId, long accountId)
+    public UserAccount(long userId, long accountId) : this()
     {
         UserId = userId;
         AccountId = accountId;
