@@ -1,0 +1,31 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+::ng-deep .mat-tab-group .mat-tab-label {
+  min-width: 180px;
+}
+
+.mat-card {
+  padding: 18px 46px;
+
+  .mat-card-header {
+    justify-content: center;
+    padding: 20px 0;
+
+    .mat-card-title {
+      // font-size: 1.7em;
+    }
+  }
+
+  &.mat-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -25,6 +25,7 @@ public static class DbContextExtensions
                 .AddDbContextPool<AccountDbContext>(
                 o => o
                     .EnableSensitiveDataLogging()
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                     .UseSqlServer(
                         configuration.GetConnectionString("Account"),
                         x => x.MigrationsAssembly("Account.Budget.EntityFrameworkCore")));

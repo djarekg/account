@@ -1,7 +1,7 @@
-using Account.Budget.EntityFrameworkCore.Models;
+using Account.Budget.Identity.Services;
+using Account.Budget.Identity.Tokens.Jwt;
 using Account.Budget.Web.Exceptions;
-using Account.Budget.Web.Security;
-using Account.Budget.Web.Services;
+using Account.Budget.Web.Models;
 using Account.Budget.Web.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,28 +36,26 @@ public class AuthController : ControllerBase
     public ActionResult<bool> Get() => Ok(User?.Identity?.IsAuthenticated);
 
     /// <summary>
-    /// Signin user.
+    /// Sign in user.
     /// </summary>
-    /// <param name="login">The Login object.</param>
-    /// <returns>The JwtToken for authenticated user.</returns>
-    /// <response code="201">Returns JwtToken for authenticated user.</response>
-    /// <response code="400">If credentials is invalid.</response>
-    /// <response code="401">If credentials is unauthorized.</response>
+    /// <param name="login">The <see cref="Login"/> object.</param>
+    /// <returns>The <see cref="JwtToken"/> for authenticated user.</returns>
+    /// <response code="200">Returns <see cref="JwtToken"/> for authenticated user.</response>
+    /// <response code="400">If credentials are invalid.</response>
+    /// <response code="401">If credentials are unauthorized.</response>
     [AllowAnonymous]
     [HttpPut(Name = "Login")]
-    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(JwtToken))]
+    [ValidateModel]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(JwtToken))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<JwtToken>> Put([FromBody] string userName, [FromBody] string password)
+    public async Task<ActionResult<JwtToken>> Put(Login login)
     {
-        ArgumentException.ThrowIfNullOrEmpty(userName, nameof(userName));
-        ArgumentException.ThrowIfNullOrEmpty(password, nameof(password));
-
-        var token = await _identityService.ValidateCredentialsAndSignInAsync(userName, password);
+        var token = await _identityService.SignInAsync(login.UserName, login.Password);
 
         if (token is not null)
         {
-            return CreatedAtAction(nameof(token), new { id = token.DisplayName }, token);
+            return Ok(token);
         }
 
         return Unauthorized();
