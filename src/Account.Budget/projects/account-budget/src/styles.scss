@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'button';
+@use 'icon';
+@import 'theme';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+.material-icons.md-24 {
+  height: 24px;
+  width: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+  height: 36px;
+  width: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+}

@@ -1,0 +1,36 @@
+@import 'variables';
+
+$header-footer-height: 64px;
+$header-footer-padding: 0 16px;
+$header-footer-background-color: $accent-dark-color;
+$header-footer-text-color: $light-primary-text;
+
+@mixin app-layout {
+  display: flex;
+  align-items: center;
+  height: $header-footer-height;
+  background-color: $header-footer-background-color;
+  padding: $header-footer-padding;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 2;
+  }
+
+  &,
+  a,
+  .mat-button-base {
+    color: $header-footer-text-color;
+  }
+
+  .mat-button-base {
+    background-color: transparent;
+
+    &:hover {
+      background-color: $accent-dark-color;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import 'layout';
+
+:host {
+  @include app-layout;
+
+  .page-title {
+    margin-left: 10px;
+  }
+}

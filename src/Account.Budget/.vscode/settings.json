@@ -1,4 +1,20 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "css.validate": false,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -8,5 +24,7 @@
     "**/Thumbs.db": true,
     "**/node_modules": true,
     "**/.angular": true,
-  },
+    "**/dist": true,
+    "**/out": true,
+  }
 }

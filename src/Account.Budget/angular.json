@@ -4,9 +4,7 @@
   "cli": {
     "packageManager": "pnpm",
     "analytics": false,
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -30,13 +28,14 @@
             "polyfills": "projects/account-budget/src/polyfills.ts",
             "tsConfig": "projects/account-budget/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/account-budget/src/favicon.ico",
-              "projects/account-budget/src/assets"
-            ],
+            "assets": ["projects/account-budget/src/favicon.ico", "projects/account-budget/src/assets"],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "projects/account-budget/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/account-budget/src/styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -70,7 +69,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -81,6 +80,10 @@
             "development": {
               "browserTarget": "account-budget:build:development"
             }
+          },
+          "options": {
+            "browserTarget": "account-budget:build:development",
+            "proxyConfig": "projects/account-budget/src/proxy.conf.json"
           },
           "defaultConfiguration": "development"
         },
@@ -98,11 +101,9 @@
             "tsConfig": "projects/account-budget/tsconfig.spec.json",
             "karmaConfig": "projects/account-budget/karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/account-budget/src/favicon.ico",
-              "projects/account-budget/src/assets"
-            ],
+            "assets": ["projects/account-budget/src/favicon.ico", "projects/account-budget/src/assets"],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.scss",
               "projects/account-budget/src/styles.scss"
             ],
             "scripts": []
@@ -111,10 +112,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/account-budget/**/*.ts",
-              "projects/account-budget/**/*.html"
-            ]
+            "lintFilePatterns": ["projects/account-budget/**/*.ts", "projects/account-budget/**/*.html"]
           }
         }
       }

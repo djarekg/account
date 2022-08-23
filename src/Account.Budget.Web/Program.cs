@@ -1,51 +1,78 @@
 using Account.Budget.EntityFrameworkCore.Extensions;
-using Account.Budget.EntityFrameworkCore.Models;
+using Account.Budget.Identity.Extensions;
+using Account.Budget.Identity.Tokens.Jwt;
 using Account.Budget.Web.Exceptions;
-using Account.Budget.Web.Services;
 using Account.Budget.Web.Validation;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 
+var allowSpecificOrigins = "allowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers(options =>
+// configure settings
 {
-    options.Filters.Add<HttpResponseExceptionFilter>();
-    options.Filters.Add<ValidateModelAttribute>();
-});
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddHttpContextAccessor();
+    var configuration = builder.Configuration;
 
-builder.Services.AddJwtBearerAuthentication(builder.Configuration);
+    configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+}
 
-builder.Services.AddMemoryCache();
+// add services to DI container.
+{
+    var services = builder.Services;
 
-builder.Services.AddAccountDbContext(builder.Configuration);
+    if (builder.Environment.IsDevelopment())
+    {
+        services.AddCors(options =>
+        {
+            options.AddPolicy(
+                allowSpecificOrigins,
+                policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
+    }
 
-builder.Services.AddScoped<IIdentityService, IdentityService>();
+    services.Configure<JwtTokenSettings>(builder.Configuration.GetSection("JwtToken"));
+
+    services.AddControllers(options =>
+    {
+        options.Filters.Add<HttpResponseExceptionFilter>();
+        options.Filters.Add<ValidateModelAttribute>();
+    });
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen();
+    services.AddHttpContextAccessor();
+    services.AddMemoryCache();
+    services.AddJwtBearerAuthentication(builder.Configuration);
+    services.AddAccountDbContext(builder.Configuration);
+}
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// configure middleware.
 {
-    app.UseSwagger();
-    // app.UseSwaggerUI();
-    app.UseSwaggerUI(options =>
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = string.Empty;
-    });
+        app.UseCors(allowSpecificOrigins);
+        app.UseSwagger();
+        // app.UseSwaggerUI();
+        app.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("v1/swagger.json", "v1");
+        });
+    }
+    else
+    {
+        app.UseHttpsRedirection();
+    }
+
+    app.UseAuthorization();
+    app.UseAuthentication();
+
+    app.MapControllers();
 }
-
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-app.UseAuthentication();
-app.MapControllers();
 
 app.Run();

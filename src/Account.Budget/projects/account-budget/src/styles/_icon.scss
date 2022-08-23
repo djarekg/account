@@ -1,0 +1,17 @@
+@use 'sass:color';
+
+@mixin color-adjust($name, $color) {
+  &[svgicon='#{$name}'] {
+    color: $color;
+
+    &:hover {
+      color: color.adjust($color, $lightness: -10);
+    }
+  }
+}
+
+.mat-icon {
+  @include color-adjust(google, #ff7769);
+  @include color-adjust(twitter, #179cf0);
+  @include color-adjust(facebook, #385899);
+}
