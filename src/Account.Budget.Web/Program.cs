@@ -64,8 +64,10 @@ var app = builder.Build();
             options.SwaggerEndpoint("v1/swagger.json", "v1");
         });
     }
-
-    app.UseHttpsRedirection();
+    else
+    {
+        app.UseHttpsRedirection();
+    }
 
     app.UseAuthorization();
     app.UseAuthentication();

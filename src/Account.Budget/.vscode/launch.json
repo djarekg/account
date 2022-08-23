@@ -4,7 +4,7 @@
   "configurations": [
     {
       "name": "ng serve",
-      "type": "msedge",
+      "type": "pwa-msedge",
       "request": "launch",
       "preLaunchTask": "npm: start",
       "url": "http://localhost:4200",
@@ -21,7 +21,7 @@
     },
     {
       "name": "ng test",
-      "type": "msedge",
+      "type": "pwa-msedge",
       "request": "launch",
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html"

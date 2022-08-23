@@ -11,7 +11,7 @@ import { TemplatePageTitleStrategy } from './strategies';
 @NgModule({
   declarations: [PasswordMatchDirective],
   imports: [CommonModule, FormsModule, MatSnackBarModule],
-  exports: [CommonModule, FormsModule],
+  exports: [CommonModule, FormsModule, MatSnackBarModule],
   providers: [httpInterceptorProviders, { provide: TitleStrategy, useClass: TemplatePageTitleStrategy }],
 })
 export class SharedModule {}
