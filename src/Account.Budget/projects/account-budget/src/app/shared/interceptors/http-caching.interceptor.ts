@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Injectable } from '@angular/core';
 import { Observable, of, startWith, tap } from 'rxjs';
 
-import { RequestCache } from '@account-budget/services';
+import { RequestCache } from '@account/budget/services';
 
 /**
  * If request is cacheable (e.g., package search) and

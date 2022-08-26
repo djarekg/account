@@ -116,6 +116,43 @@
           }
         }
       }
+    },
+    "account-ui": {
+      "projectType": "library",
+      "root": "projects/account-ui",
+      "sourceRoot": "projects/account-ui/src",
+      "prefix": "appUi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/account-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/account-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/account-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/account-ui/src/test.ts",
+            "tsConfig": "projects/account-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/account-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/account-ui/**/*.ts", "projects/account-ui/**/*.html"]
+          }
+        }
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import { JwtToken } from '@account-budget/models';
+import { JwtToken } from '@account/budget/models';
 import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'auth-token';

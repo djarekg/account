@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<site-list version="29">
+ <site url="analytics.ubcmain.com">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="argusp.santhera.com">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="etmf-prod.ubc.com">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="etmf-prod.ubc.com/sites/tas-120-201/temporaryfile/forms/checked%20out%20view1.aspx">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="eudravigilance.ema.europa.eu/decommissioned/decommissioned.html">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="eudravigilance.ema.europa.eu/human/restricted/publicview/xevmpdsupport.asp">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="lxa-aacc-mgmt/ccmalogin/home/login">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="lxa-aacc-mgmt.ubcmain.com">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="lxa-aacc-mgmt.ubcmain.com/ccmalogin/home/login">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="outlook.office.com.office.prod.abbvie.myshn.net">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="secure.extraview.net/support/extraview">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcjde.ubcmain.com">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet/it/cr/pages/home.aspx">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet/newhire/lists/loa%20return/input.aspx">
+  <compat-mode>IE11</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet/newhire/lists/loa/input.aspx">
+  <compat-mode>IE11</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet/newhire/lists/new%20hire%20announcement%20home%20based%20ee/input.aspx">
+  <compat-mode>IE11</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet/newhire/lists/new%20hire%20announcement/input.aspx">
+  <compat-mode>IE11</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet/newhire/lists/termination%20announcement/input.aspx">
+  <compat-mode>IE11</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet/newhire/lists/transferchange%20announcement/input.aspx">
+  <compat-mode>IE11</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="ubcnet.ubcmain.com/it/cr/pages/home.aspx">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+ <site url="uptivity.ubcmain.com">
+  <compat-mode>Default</compat-mode>
+  <open-in allow-redirect="true">IE11</open-in>
+ </site>
+</site-list>

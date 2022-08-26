@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { LoggerService } from '@account-budget/services';
+import { LoggerService } from '@account/budget/services';
 
 export interface RequestCacheEntry {
   url: string;

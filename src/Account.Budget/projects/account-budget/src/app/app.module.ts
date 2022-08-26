@@ -5,9 +5,9 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LayoutModule } from '@account-budget/layout';
-import { RequestCache, RequestCacheWithMap } from '@account-budget/services';
-import { SharedModule } from '@account-budget/shared';
+import { LayoutModule } from '@account/budget/layout';
+import { RequestCache, RequestCacheWithMap } from '@account/budget/services';
+import { SharedModule } from '@account/budget/shared';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';

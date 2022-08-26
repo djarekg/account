@@ -1,4 +1,4 @@
-import { AuthService, ToastService } from '@account-budget/services';
+import { AuthService, ToastService } from '@account/budget/services';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';

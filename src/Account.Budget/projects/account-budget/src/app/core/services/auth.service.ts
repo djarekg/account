@@ -1,5 +1,5 @@
-import { JwtToken } from '@account-budget/models';
-import { TokenService } from '@account-budget/services';
+import { JwtToken } from '@account/budget/models';
+import { TokenService } from '@account/budget/services';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, switchMap, tap, throwError } from 'rxjs';

@@ -1,0 +1,59 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ng serve",
+            "type": "pwa-msedge",
+            "request": "launch",
+            "preLaunchTask": "npm: start",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceRoot}/src/Account.Budget",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:/*": "${webRoot}/*",
+                "/./*": "${webRoot}/*",
+                "/src/*": "${webRoot}/src/*",
+                "/*": "*",
+                "/./~/*": "${workspaceFolder}/node_modules/*"
+            },
+            "userDataDir": "${workspaceRoot}/out/edge",
+        },
+        {
+            "name": ".net (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Account.Budget.Web/bin/Debug/net7.0/Account.Budget.Web.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Account.Budget.Web",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "DEVELOPMENT",
+                "ASPNETCORE_URLS": "http://localhost:5000"
+            },
+        },
+        {
+            "name": "swagger",
+            "request": "launch",
+            "type": "msedge",
+            "url": "http://localhost:5000/swagger",
+            "webRoot": "${workspaceFolder}/src/Account.Budget.Web"
+        }
+    ],
+    "compounds": [
+        {
+            "name": ".net (web)/ng serve",
+            "configurations": [
+                ".net (web)",
+                "ng serve"
+            ]
+        },
+        {
+            "name": ".net (web)/swagger",
+            "configurations": [
+                ".net (web)",
+                "swagger"
+            ]
+        }
+    ]
+}

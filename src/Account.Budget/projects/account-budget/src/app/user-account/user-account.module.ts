@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { SharedModule } from '@account-budget/shared';
+import { SharedModule } from '@account/budget/shared';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserAccountRoutingModule } from './user-account-routing.module';
