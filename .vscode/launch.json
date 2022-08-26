@@ -16,7 +16,7 @@
                 "/*": "*",
                 "/./~/*": "${workspaceFolder}/node_modules/*"
             },
-            "userDataDir": "${workspaceRoot}/out/edge",
+            "userDataDir": "${workspaceRoot}/.out/edge",
         },
         {
             "name": ".net (web)",
